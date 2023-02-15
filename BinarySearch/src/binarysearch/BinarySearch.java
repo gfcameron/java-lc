@@ -3,35 +3,20 @@ package binarysearch;
 class BinarySearch {
 
     public int search(int[] nums, int target) {
-        // Start from middle of the list
-        int i = nums.length/2;
-
-        if (i>0) {
-            // Need search rounded up to next power of 2.
-            int delta = i>>1;
-            for (int mask = delta >> 1; mask != 0; mask >>=1) {
-                delta |= mask;
+        int lo = 0;
+        int hi = nums.length;
+        while (lo < hi) {
+            int mid = lo + (hi-lo)/2;
+            if (nums[mid] < target) {
+                lo = mid+1;
+            } else {
+                hi = mid;
             }
-            delta++;
-
-            // Need to ensure delta is rounded up or we will miss entries.
-            while (delta !=0) {
-                int num = nums[i];
-                if (num < target) {
-                    i = Integer.min(nums.length-1, i + delta);
-                } else if (num == target) {
-                    return i;
-                } else {
-                    i = Integer.max(0, i - delta);
-                }
-                delta >>= 1;
-            };
         }
-        // Check if we stepped past the end of list
-        if (nums[i] == target) {
-            return i;
+        if ((lo == nums.length) || (nums[lo] != target)) {
+            return -1;
         }
-        return -1;
+        return lo;
     }
 
     public static void main(String[] args) {
