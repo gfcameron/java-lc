@@ -21,11 +21,8 @@ class FizzBuzz {
         return result;
     }
 
-
     public static void main(String[] args) {
-
         int[] testCases = { 3, 5, 15 };
-
         FizzBuzz fb = new FizzBuzz();
         for ( int i=0; i < testCases.length; i++ ) {
             System.out.printf("Case %d:", i);
