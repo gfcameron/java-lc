@@ -35,9 +35,7 @@ class LinkedListCycle2 {
     // detectCycle: Check if the linked list is a LinkedListCycle
     public ListNode detectCycle(ListNode head) {
         ListNode curNode = head;
-  
         Set<ListNode>nodes = new HashSet<ListNode>();
-
         do {
             if (!nodes.add(curNode)) {
                 break;
@@ -57,7 +55,6 @@ class LinkedListCycle2 {
         ListNode cycleTail = case0;
         case0 = new ListNode(3, case0);
         cycleHead.next = cycleTail;
-
 
         ListNode case1 = new ListNode(2);
         cycleHead = case1;

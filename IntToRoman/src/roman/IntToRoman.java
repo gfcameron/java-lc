@@ -1,8 +1,8 @@
-package binarysearch;
+package roman;
 
 import java.util.*;
 
-class IntTobinarysearch {
+class IntToRoman {
 
     private static TreeMap<Integer, String> binarysearchNumMap = new TreeMap<Integer, String>()
     {
@@ -46,7 +46,7 @@ class IntTobinarysearch {
 
     public static void main(String[] args) {
         int[] testCases = { 3, 47, 1994, 0 };
-        IntTobinarysearch rconv = new IntTobinarysearch();
+        IntToRoman rconv = new IntToRoman();
         for ( int i=0; i < testCases.length; i++ ) {
             System.out.printf("Case %d: %s\n", i, rconv.isValid(testCases[i]));
         }

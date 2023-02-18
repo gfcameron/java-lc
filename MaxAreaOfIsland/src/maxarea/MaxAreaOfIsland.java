@@ -6,6 +6,12 @@ class MaxAreaOfIsland {
     // Set pixels -ve if checked
     // Step pixel by pixel, skippign checked ones.
 
+    /**
+     * @param grid  Map of the islands, 0 = ocean, 1 = island
+     * @param row   Row to check
+     * @param col   Column to check
+     * @return      Area of island at [row,col]
+     */
     int checkIsland(int[][] grid, int row, int col) {
         if(row < 0 || row >= grid.length || col < 0 || col >= grid[0].length) {
             return 0;
@@ -25,6 +31,10 @@ class MaxAreaOfIsland {
     }
 
 
+    /**
+     * @param grid  Map of the islands, 0 = ocean, 1 = island
+     * @return      Area of the largest island
+     */
     public int maxAreaOfIsland(int[][] grid) {
 
         int biggestArea = 0;

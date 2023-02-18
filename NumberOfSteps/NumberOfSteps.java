@@ -1,6 +1,7 @@
 
 class NumberOfSteps {
 
+    // numberOfSteps computes the number of steps needed to reduce to 0
     public int numberOfSteps(int num) {
         int steps = 0;
         while (num != 0) {

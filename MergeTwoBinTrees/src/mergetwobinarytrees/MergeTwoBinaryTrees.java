@@ -56,7 +56,10 @@ class MergeTwoBinaryTrees {
         return root1;
     }
 
-    // BuildTree does a breadth first tree traversal
+    /**
+     * @param elements
+     * @return tree
+     */
     public TreeNode BuildTree(int[] elements) {
         TreeNode root = new TreeNode();
         if (elements.length > 0) {

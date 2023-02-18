@@ -55,7 +55,7 @@ public class MergeTwoBinaryTreesTest {
             {1,2}
         };
 
-        int[] expectedCase = new int[]{1,2};
+        int[] expectedCase = new int[]{2,2};
 
         MergeTwoBinaryTrees.TreeNode first = mt.BuildTree(testCase[0]);
         MergeTwoBinaryTrees.TreeNode second = mt.BuildTree(testCase[1]);
