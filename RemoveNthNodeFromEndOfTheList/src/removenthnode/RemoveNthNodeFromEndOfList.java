@@ -1,7 +1,6 @@
 package removenthnode;
 
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
 
 class RemoveNthNodeFromEndOfList {

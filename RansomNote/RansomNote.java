@@ -14,7 +14,6 @@ class RansomNote {
         return map;
     }
 
-
     public boolean canConstruct(String ransomNote, String magazine) {
         Map<Character, Integer> noteMap = constructLetterMap(ransomNote);
         Map<Character, Integer> magMap = constructLetterMap(magazine);
@@ -30,7 +29,6 @@ class RansomNote {
         return true;
     }
 
-    
     public static void main(String[] args) {
 
         class TestCase {

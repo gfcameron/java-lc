@@ -1,9 +1,19 @@
 package twosum2;
 
 import java.util.Arrays;
+/*
+Given an array of integers nums and an integer target, return indices of the two numbers
+such that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the
+same element twice.
+
+You can return the answer in any order.
+*/
 
 class TwoSum2 {
 
+    // Return the indices of two numbers in the list summing to the target
     public int[] twoSum(int[] numbers, int target) {
         int [] result = new int[2];
         if (numbers.length > 1) {

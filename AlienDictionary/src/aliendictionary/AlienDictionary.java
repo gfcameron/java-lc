@@ -2,6 +2,11 @@ package aliendictionary;
 
 class AlienDictionary {
 
+    /**
+     * @param words Words to be checked
+     * @param order Character order
+     * @return true or false
+     */
     public boolean isAlienSorted(String[] words, String order) {
         int[] charMap = new int[26];
         for (int i = 0; i < order.length(); i++){
