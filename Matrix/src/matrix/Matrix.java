@@ -2,6 +2,12 @@ package matrix;
 
 import java.util.Arrays;
 
+
+/*
+Given an m x n binary matrix mat, return the distance of the nearest 0 for each cell.
+The distance between two adjacent cells is 1.
+*/
+
 class Matrix {
 
     // Find the shorted distance to a 0.

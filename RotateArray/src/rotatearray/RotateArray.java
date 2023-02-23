@@ -2,6 +2,10 @@ package rotatearray;
 
 import java.util.Arrays;
 
+/*
+Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.
+ */
+
 class RotateArray {
 
     public void rotate(int[] nums, int k) {

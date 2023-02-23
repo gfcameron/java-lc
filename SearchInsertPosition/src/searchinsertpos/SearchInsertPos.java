@@ -1,37 +1,25 @@
 package searchinsertpos;
 
+/*
+Given a sorted array of distinct integers and a target value, return the index
+if the target is found. If not, return the index where it would be if it were inserted in order.
+
+You must write an algorithm with O(log n) runtime complexity.
+ */
 class SearchInsertPosition {
 
     public int searchInsert(int[] nums, int target) {
-        // Start from middle of the list
-        int i = nums.length>>1;
-
-        if (i>0) {
-            // Need search rounded up to next power of 2.
-            int delta = i>>1;
-            for (int mask = delta >> 1; mask != 0; mask >>=1) {
-                delta |= mask;
+        int lo = 0;
+        int hi = nums.length;
+        while (lo < hi) {
+            int mid = lo + (hi-lo)/2;
+            if (nums[mid] < target) {
+                lo = mid+1;
+            } else {
+                hi = mid;
             }
-            delta++;
-
-            // Need to ensure delta is rounded up or we will miss entries.
-            while (delta !=0) {
-                int num = nums[i];
-                if (num < target) {
-                    i = Integer.min(nums.length-1, i + delta);
-                } else if (num == target) {
-                    return i;
-                } else {
-                    i = Integer.max(0, i - delta);
-                }
-                delta >>= 1;
-            };
         }
-        // Are we bigger than the last entry?
-        if (nums[i] < target) {
-            return i+1;
-        }
-        return i;
+        return lo;
     }
 
     public static void main(String[] args) {

@@ -1,6 +1,13 @@
 import java.util.*;
 class RansomNote {
 
+/* 
+Given two strings ransomNote and magazine, return true if ransomNote can be constructed
+    by using the letters from magazine and false otherwise.
+Each letter in magazine can only be used once in ransomNote.
+*/
+
+
     private Map<Character, Integer> constructLetterMap(String words) {
         HashMap<Character, Integer> map = new HashMap<Character, Integer>();
         for (char c : words.toCharArray()) {
