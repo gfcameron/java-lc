@@ -10,6 +10,7 @@ same element twice.
 
 You can return the answer in any order.
 */
+import java.util.HashSet;
 
 class TwoSum2 {
 
@@ -36,6 +37,19 @@ class TwoSum2 {
         return new int[]{-1, -1};
     }
 
+    // This returns the numbers not the index
+    public int[] twoSum2(int[] nums, int target) {
+        HashSet<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            if (set.contains(target - num)) {
+                return new int[] {target - num, num};
+            } else {
+                set.add(num);
+            }
+        }
+        return new int[]{-1,-1};
+    }
+
     public static void main(String[] args) {
 
         class TestCase {
@@ -54,10 +68,13 @@ class TwoSum2 {
             new TestCase(new int[]{-1,0}, -1)
         };
         TwoSum2 ts = new TwoSum2();
+        
         for ( int i=0; i < testCases.length; i++ ) {
-            System.out.printf("Case %d:", i);
+            System.out.printf("Case %d: Target %d\n", i, testCases[i].target);
+            System.out.println(Arrays.toString(testCases[i].array));
             // Print array
             System.out.println(Arrays.toString(ts.twoSum(testCases[i].array, testCases[i].target)));
+            System.out.println(Arrays.toString(ts.twoSum2(testCases[i].array, testCases[i].target)));
         }
     }
 }

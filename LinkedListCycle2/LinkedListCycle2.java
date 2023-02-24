@@ -45,6 +45,23 @@ class LinkedListCycle2 {
         return curNode;
     }
 
+    // Use Floyd's tortise and hare algorithm
+    public ListNode detectCycle2(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        ListNode slow = head, fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                return slow;
+            }
+        }
+        return null;
+    }
+
+
     // main
     public static void main(String[] args) {
         // Construct from the tail
@@ -82,6 +99,18 @@ class LinkedListCycle2 {
                     idx++;
                 }
                 System.out.printf("cycle at node %d\n", idx);
+            }
+            System.out.println("Floyd's algorithm...");
+            // With other algorithm
+            result = llc.detectCycle(testCases[i]);
+            if (result == null) {
+                System.out.println("no cycle");
+            } else {
+                int idx = 0;
+                for (ListNode node = testCases[i]; node != result; node = node.next) {
+                    idx++;
+                }
+                System.out.printf("cycle found at node %d\n", idx);
             }
         }
     }
