@@ -9,17 +9,15 @@ Given an integer array nums, rotate the array to the right by k steps, where k i
 class RotateArray {
 
     public void rotate(int[] nums, int k) {
+        int shift = k % nums.length;
+        int[] firstFrag = Arrays.copyOfRange(nums, 0, nums.length - shift);
+        int[] secondFrag = Arrays.copyOfRange(nums, nums.length - shift, nums.length);
 
-        int shift = k%nums.length;
-
-        int[] firstFrag = Arrays.copyOfRange(nums, 0, nums.length-shift);
-        int[] secondFrag = Arrays.copyOfRange(nums, nums.length-shift, nums.length);
-
-        for (int i=0; i < secondFrag.length; i++) {
+        for (int i = 0; i < secondFrag.length; i++) {
             nums[i] = secondFrag[i];
         }
-        for (int i=0; i < firstFrag.length; i++) {
-            nums[secondFrag.length+i] = firstFrag[i];
+        for (int i = 0; i < firstFrag.length; i++) {
+            nums[secondFrag.length + i] = firstFrag[i];
         }
     }
 
@@ -36,11 +34,11 @@ class RotateArray {
         }
 
         TestCase[] testCases = {
-            new TestCase(new int[]{1,2,3,4,5,6,7}, 3),
-            new TestCase(new int[]{-1,-100,3,99}, 2)
+                new TestCase(new int[] { 1, 2, 3, 4, 5, 6, 7 }, 3),
+                new TestCase(new int[] { -1, -100, 3, 99 }, 2)
         };
         RotateArray ra = new RotateArray();
-        for ( int i=0; i < testCases.length; i++ ) {
+        for (int i = 0; i < testCases.length; i++) {
             System.out.printf("Case %d:", i);
             ra.rotate(testCases[i].array, testCases[i].rotations);
             // Print array

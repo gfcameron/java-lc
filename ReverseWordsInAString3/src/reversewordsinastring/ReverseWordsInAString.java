@@ -18,10 +18,10 @@ class ReverseWordsInAString {
 
     public String reverseWords(String s) {
         String[] words = s.split(" ");
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         for (String word: words) {
-            // Get working stringbuffer
-            StringBuffer sb = new StringBuffer(word);
+            // Get working StringBuilder
+            StringBuilder sb = new StringBuilder(word);
             sb.reverse();
             result = result.append(sb).append(" ");
         }
