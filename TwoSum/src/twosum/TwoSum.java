@@ -2,6 +2,7 @@ package twosum;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 
 /*
 Given an array of integers nums and an integer target, return indices of the two numbers
@@ -29,8 +30,20 @@ class TwoSum {
         return new int[] { -1, -1 };
     }
 
-    public static void main(String[] args) {
+    // This returns the numbers not the index
+    public int[] twoSumNumsOnly(int[] nums, int target) {
+        HashSet<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            if (set.contains(target - num)) {
+                return new int[] { target - num, num };
+            } else {
+                set.add(num);
+            }
+        }
+        return new int[] { -1, -1 };
+    }
 
+    public static void main(String[] args) {
         class TestCase {
             int[] array;
             int target;
@@ -53,6 +66,9 @@ class TwoSum {
             System.out.println(Arrays.toString(testCases[i].array));
             // Print array
             System.out.println(Arrays.toString(ts.twoSum(testCases[i].array, testCases[i].target)));
+            // Print nums only
+            System.out.printf("Nums only: %s\n",
+                    Arrays.toString(ts.twoSumNumsOnly(testCases[i].array, testCases[i].target)));
         }
     }
 }

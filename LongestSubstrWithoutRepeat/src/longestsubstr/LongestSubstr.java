@@ -3,20 +3,31 @@ package longestsubstr;
 import java.util.HashSet;
 import java.util.Set;
 
+/*
+ * Longest substring of non-repeating characters
+ */
+
 class LongestSubstr {
 
-    public int lengthOfLongestSubstring(String s) {   
-        int longest = Math.min(1,s.length());
-        for (int spos = 0;spos < s.length()-longest;spos++) {
-            char sch = s.charAt(spos);
-            Set<Character> set = new HashSet<Character>();
-            set.add(sch);
-            for(int epos = spos+1; epos <= s.length(); epos++){
-                if (epos == s.length() || !set.add(s.charAt(epos))) {
-                    int diff = epos-spos;
-                    longest = Math.max(diff,longest);
-                    break;
+    public int lengthOfLongestSubstring(String s) {
+        Set<Character> set = new HashSet<>();
+        int longest = 0;
+        int left = 0;
+        // Sliding window
+        for (int right = 0; right < s.length(); right++) {
+            // Check for repeated character in the window set
+            if (set.contains(s.charAt(right))) {
+                // We hit a repeated character so advance left pointer
+                while (s.charAt(left) != s.charAt(right)) {
+                    set.remove(s.charAt(left));
+                    left++;
                 }
+                set.remove(s.charAt(left));
+                left++;
+                set.add(s.charAt(right));
+            } else {
+                set.add(s.charAt(right));
+                longest = Math.max(longest, right - left + 1);
             }
         }
         return longest;
@@ -25,12 +36,12 @@ class LongestSubstr {
     public static void main(String[] args) {
 
         String[] testCases = {
-            "abcabcbb",
-            "bbbbb",
-            "pwwkew"
+                "abcabcbb",
+                "bbbbb",
+                "pwwkew"
         };
         LongestSubstr ls = new LongestSubstr();
-        for ( int i=0; i < testCases.length; i++ ) {
+        for (int i = 0; i < testCases.length; i++) {
             System.out.printf("Case %d:", i);
             // Print reversed strings
             System.out.println(ls.lengthOfLongestSubstring(testCases[i]));
