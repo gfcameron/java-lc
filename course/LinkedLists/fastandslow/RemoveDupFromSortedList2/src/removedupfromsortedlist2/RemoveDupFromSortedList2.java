@@ -1,13 +1,11 @@
-package removenthnode;
-
-import java.util.ArrayList;
-import java.util.List;
+package removedupfromsortedlist2;
 
 /*
- * Given the head of a linked list, remove the nth node from the end of the list and return its head.
+Given the head of a sorted linked list, delete all nodes that have duplicate numbers,
+leaving only distinct numbers from the original list. Return the linked list sorted as well.
  */
 
-class RemoveNthNodeFromEndOfList {
+class RemoveDupFromSortedList2 {
 
     /**
      * Definition for singly-linked list.
@@ -36,20 +34,27 @@ class RemoveNthNodeFromEndOfList {
         }
     }
 
-    public ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode fastNode = head, slowNode = head;
-        for (int count = n; count > 0 && fastNode != null; count--) {
-            fastNode = fastNode.next;
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode prev = head;
+        ListNode node = head;
+        while (node != null) {
+            int val = node.val;
+            ListNode next = node.next;
+            while (next != null && next.val == val) {
+                next = next.next;
+            }
+            if (next == node.next) {
+                // We didn't do anything, no dupes found
+                prev = node;
+            } else {
+                prev.next = next;
+                if (node == head) {
+                    head = next;
+                    prev = next;
+                }
+            }
+            node = next;
         }
-        if (fastNode == null) {
-            return head.next;
-        }
-        // Slow node lags n+1 behind fast node
-        while (fastNode.next != null) {
-            fastNode = fastNode.next;
-            slowNode = slowNode.next;
-        }
-        slowNode.next = slowNode.next.next;
         return head;
     }
 
@@ -72,28 +77,16 @@ class RemoveNthNodeFromEndOfList {
     // main
     public static void main(String[] args) {
 
-        class TestCase {
-            ListNode list;
-            int nodeToRemove;
-
-            TestCase(int nodeToRemove, ListNode list) {
-                this.nodeToRemove = nodeToRemove;
-                this.list = list;
-            }
-
-        }
-
-        TestCase[] testCases = {
-                new TestCase(2, buildListNodesFromList(new int[] { 5, 4, 3, 2, 1 })),
-                new TestCase(1, buildListNodesFromList(new int[] { 1 })),
-                new TestCase(1, buildListNodesFromList(new int[] { 2, 1 })),
-                new TestCase(2, buildListNodesFromList(new int[] { 2, 1 })),
+        ListNode[] testCases = {
+                buildListNodesFromList(new int[] { 1, 2, 2 }),
+                buildListNodesFromList(new int[] { 1, 2, 3, 3, 4, 4, 5 }),
+                buildListNodesFromList(new int[] { 1, 1, 1, 2, 3 }),
         };
 
-        RemoveNthNodeFromEndOfList mid = new RemoveNthNodeFromEndOfList();
+        RemoveDupFromSortedList2 mid = new RemoveDupFromSortedList2();
         for (int i = 0; i < testCases.length; i++) {
             System.out.printf("Case %d: ", i);
-            ListNode result = mid.removeNthFromEnd(testCases[i].list, testCases[i].nodeToRemove);
+            ListNode result = mid.deleteDuplicates(testCases[i]);
             for (ListNode node = result; node != null; node = node.next) {
                 System.out.printf("%d ", node.val);
             }

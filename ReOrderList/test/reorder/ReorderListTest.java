@@ -4,10 +4,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-
 public class ReorderListTest {
-
-    int[] testCases = { 3, 47, 1994, 0 };
 
     private static ReorderList fd;
 
@@ -58,12 +55,12 @@ public class ReorderListTest {
         }
     }
 
-   @Test
+    @Test
     public void case2() {
         ReorderList.ListNode testCase2 = new ReorderList.ListNode(1);
 
         fd.reorderList(testCase2);
-    
+
         ReorderList.ListNode expectedCase2 = new ReorderList.ListNode(1);
         Assert.assertEquals(testCase2, expectedCase2);
     }

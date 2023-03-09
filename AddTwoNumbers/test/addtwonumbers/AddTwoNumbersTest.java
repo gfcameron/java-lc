@@ -6,8 +6,6 @@ import org.junit.Test;
 
 public class AddTwoNumbersTest {
 
-    int[] testCases = { 3, 47, 1994, 0 };
-
     private static AddTwoNumbers a2n;
 
     @BeforeClass

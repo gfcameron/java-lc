@@ -4,10 +4,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-
 public class MiddleOfTheListTest {
-
-    int[] testCases = { 3, 47, 1994, 0 };
 
     private static MiddleOfTheList ml;
 
@@ -43,7 +40,7 @@ public class MiddleOfTheListTest {
         Assert.assertEquals(expectedMiddleNode, result);
     }
 
-   @Test
+    @Test
     public void case2() {
         MiddleOfTheList.ListNode testCase = new MiddleOfTheList.ListNode(1);
         MiddleOfTheList.ListNode expectedMiddleNode = testCase;

@@ -1,13 +1,13 @@
-package removenthnode;
-
-import java.util.ArrayList;
-import java.util.List;
+package remlinkedlistelements;
 
 /*
- * Given the head of a linked list, remove the nth node from the end of the list and return its head.
+You are given the head of a linked list, and an integer k.
+
+Return the head of the linked list after swapping the values of the kth node from the beginning
+and the kth node from the end (the list is 1-indexed).
  */
 
-class RemoveNthNodeFromEndOfList {
+class RemLinkedListElements {
 
     /**
      * Definition for singly-linked list.
@@ -36,20 +36,26 @@ class RemoveNthNodeFromEndOfList {
         }
     }
 
-    public ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode fastNode = head, slowNode = head;
-        for (int count = n; count > 0 && fastNode != null; count--) {
-            fastNode = fastNode.next;
+    public ListNode removeElements(ListNode head, int val) {
+        ListNode prevNode = null;
+        ListNode curNode = head;
+        for (curNode = head; curNode != null; curNode = curNode.next) {
+            while (curNode.val == val) {
+                if (curNode == head) {
+                    // Advance head pointer
+                    curNode = head.next;
+                    head = curNode;
+                } else {
+                    // Skip this node
+                    curNode = curNode.next;
+                    prevNode.next = curNode;
+                }
+                if (curNode == null) {
+                    return head;
+                }
+            }
+            prevNode = curNode;
         }
-        if (fastNode == null) {
-            return head.next;
-        }
-        // Slow node lags n+1 behind fast node
-        while (fastNode.next != null) {
-            fastNode = fastNode.next;
-            slowNode = slowNode.next;
-        }
-        slowNode.next = slowNode.next.next;
         return head;
     }
 
@@ -74,26 +80,24 @@ class RemoveNthNodeFromEndOfList {
 
         class TestCase {
             ListNode list;
-            int nodeToRemove;
+            int val;
 
-            TestCase(int nodeToRemove, ListNode list) {
-                this.nodeToRemove = nodeToRemove;
+            TestCase(ListNode list, int k) {
                 this.list = list;
+                this.val = k;
             }
-
         }
 
         TestCase[] testCases = {
-                new TestCase(2, buildListNodesFromList(new int[] { 5, 4, 3, 2, 1 })),
-                new TestCase(1, buildListNodesFromList(new int[] { 1 })),
-                new TestCase(1, buildListNodesFromList(new int[] { 2, 1 })),
-                new TestCase(2, buildListNodesFromList(new int[] { 2, 1 })),
+                new TestCase(buildListNodesFromList(new int[] { 1, 2, 6, 3, 4, 5, 6 }), 6),
+                new TestCase(buildListNodesFromList(new int[] {}), 1),
+                new TestCase(buildListNodesFromList(new int[] { 7, 7, 7, 7 }), 7),
         };
 
-        RemoveNthNodeFromEndOfList mid = new RemoveNthNodeFromEndOfList();
+        RemLinkedListElements rlle = new RemLinkedListElements();
         for (int i = 0; i < testCases.length; i++) {
             System.out.printf("Case %d: ", i);
-            ListNode result = mid.removeNthFromEnd(testCases[i].list, testCases[i].nodeToRemove);
+            ListNode result = rlle.removeElements(testCases[i].list, testCases[i].val);
             for (ListNode node = result; node != null; node = node.next) {
                 System.out.printf("%d ", node.val);
             }

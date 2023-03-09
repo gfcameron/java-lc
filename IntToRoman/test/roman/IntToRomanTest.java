@@ -4,10 +4,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-
 public class IntToRomanTest {
-
-    int[] testCases = { 3, 47, 1994, 0 };
 
     private static IntToRoman rconv;
 
@@ -26,7 +23,7 @@ public class IntToRomanTest {
         Assert.assertEquals("LVII", rconv.isValid(57));
     }
 
-   @Test
+    @Test
     public void case2() {
         Assert.assertEquals("MCMXCIV", rconv.isValid(1994));
     }

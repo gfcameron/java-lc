@@ -1,13 +1,6 @@
-package removenthnode;
+package deletemiddlenode;
 
-import java.util.ArrayList;
-import java.util.List;
-
-/*
- * Given the head of a linked list, remove the nth node from the end of the list and return its head.
- */
-
-class RemoveNthNodeFromEndOfList {
+class DeleteMiddleNode {
 
     /**
      * Definition for singly-linked list.
@@ -36,20 +29,20 @@ class RemoveNthNodeFromEndOfList {
         }
     }
 
-    public ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode fastNode = head, slowNode = head;
-        for (int count = n; count > 0 && fastNode != null; count--) {
-            fastNode = fastNode.next;
+    public ListNode deleteMiddle(ListNode head) {
+        // Corner case
+        if (head.next == null) {
+            return null;
         }
-        if (fastNode == null) {
-            return head.next;
-        }
-        // Slow node lags n+1 behind fast node
-        while (fastNode.next != null) {
-            fastNode = fastNode.next;
+        ListNode fastNode = head;
+        ListNode slowNode = head;
+        ListNode prevNode = null;
+        while (fastNode != null && fastNode.next != null) {
+            prevNode = slowNode;
             slowNode = slowNode.next;
+            fastNode = fastNode.next.next;
         }
-        slowNode.next = slowNode.next.next;
+        prevNode.next = prevNode.next.next;
         return head;
     }
 
@@ -71,29 +64,16 @@ class RemoveNthNodeFromEndOfList {
 
     // main
     public static void main(String[] args) {
-
-        class TestCase {
-            ListNode list;
-            int nodeToRemove;
-
-            TestCase(int nodeToRemove, ListNode list) {
-                this.nodeToRemove = nodeToRemove;
-                this.list = list;
-            }
-
-        }
-
-        TestCase[] testCases = {
-                new TestCase(2, buildListNodesFromList(new int[] { 5, 4, 3, 2, 1 })),
-                new TestCase(1, buildListNodesFromList(new int[] { 1 })),
-                new TestCase(1, buildListNodesFromList(new int[] { 2, 1 })),
-                new TestCase(2, buildListNodesFromList(new int[] { 2, 1 })),
+        ListNode[] testCases = {
+                buildListNodesFromList(new int[] { 1, 3, 4, 7, 1, 2, 6 }),
+                buildListNodesFromList(new int[] { 1, 2, 3, 4 }),
+                buildListNodesFromList(new int[] { 2, 1 }),
         };
 
-        RemoveNthNodeFromEndOfList mid = new RemoveNthNodeFromEndOfList();
+        DeleteMiddleNode del = new DeleteMiddleNode();
         for (int i = 0; i < testCases.length; i++) {
             System.out.printf("Case %d: ", i);
-            ListNode result = mid.removeNthFromEnd(testCases[i].list, testCases[i].nodeToRemove);
+            ListNode result = del.deleteMiddle(testCases[i]);
             for (ListNode node = result; node != null; node = node.next) {
                 System.out.printf("%d ", node.val);
             }
